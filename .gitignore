@@ -1,3 +1,4 @@
-*.log
+/.well-known/
 /sftp-config.json
+*.log
 error_log
