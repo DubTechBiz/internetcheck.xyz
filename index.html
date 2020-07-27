@@ -1,0 +1,56 @@
+<!-- https://github.com/Dubz/internetcheck.xyz -->
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title> - Connecting ... </title>
+        <style>
+            body {
+                 font-family: Montserrat, helvetica, arial, sans-serif; 
+                 font-size: 16px;
+                 color: #444444;
+                 margin: 0;
+            }
+            h2 {
+                font-weight: 700;
+                font-size: 1.6em;
+                margin-top: 30px;
+            }
+            p {
+                line-height: 1.6em;
+            }
+            .container {
+                max-width: 650px;
+                margin: 20px auto 20px auto;
+                padding-left: 15px;
+                padding-right: 15px
+            }
+            .header {
+                background-color: #FCE8B2;
+                /*color: ;*/
+                padding: 10px 0 10px 0;
+                font-size: 2.2em;
+            }
+        </style>
+        <!-- CSS from Mark Webster https://gist.github.com/markcwebster/9bdf30655cdd5279bad13993ac87c85d -->
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <h1>Please wait...</h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                <h1>Connecting ...</h1>
+            </div>
+        </div>
+        <script>
+            (function() {
+                document.title = document.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3') + document.title;
+                const prefix = 'bcdfhklmnrstvwxz';
+                let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
+                window.location.href = 'http://' + sub + '.' + window.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3') + '/online'; 
+            }())
+        </script>
+    </body>
+</html>

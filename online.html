@@ -1,0 +1,83 @@
+<!-- https://github.com/Dubz/internetcheck.xyz -->
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title> - helping you get online</title>
+        <style>
+            body {
+                 font-family: Montserrat, helvetica, arial, sans-serif; 
+                 font-size: 16px;
+                 color: #444444;
+                 margin: 0;
+            }
+            h2 {
+                font-weight: 700;
+                font-size: 1.6em;
+                margin-top: 30px;
+            }
+            p {
+                line-height: 1.6em;
+            }
+            .container {
+                max-width: 650px;
+                margin: 20px auto 20px auto;
+                padding-left: 15px;
+                padding-right: 15px
+            }
+            .header {
+                background-color: #B7E1CD;
+                color: green;
+                padding: 10px 0 10px 0;
+                font-size: 2.2em;
+            }
+        </style>
+        <!-- CSS from Mark Webster https://gist.github.com/markcwebster/9bdf30655cdd5279bad13993ac87c85d -->
+    </head>
+    <body>
+        <div class="header">
+            <div class="container">
+                <h1>Success!</h1><small>You are online</small>
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                <h2>What?</h2>
+                <p>This website is for when you try to open Facebook, Google, Amazon, etc
+                on a wifi network, and nothing happens. Type "http://<domain>internetcheck.xyz</domain>"
+                into your browser's url bar, and you'll be able to log on.</p>
+
+                <h2>How?</h2>
+                <p><domain>internetcheck.xyz</domain> will never use SSL (also known as TLS). No
+                encryption, no strong authentication, no <a
+                href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a>,
+                no HTTP/2.0, just plain old unencrypted HTTP and forever stuck in the dark
+                ages of internet security.</p> 
+
+                <h2>Why?</h2>
+                <p>Normally, that's a bad idea. You should always use SSL and secure
+                encryption when possible. In fact, it's such a bad idea that most websites
+                are now using https by default.</p>
+                
+                <p>And that's great, but it also means that if you're relying on
+                poorly-behaved wifi networks, it can be hard to get online.  Secure
+                browsers and websites using https make it impossible for those wifi
+                networks to send you to a login or payment page. Basically, those networks
+                can't tap into your connection just like attackers can't. Modern browsers
+                are so good that they can remember when a website supports encryption and
+                even if you type in the website name, they'll use https.</p> 
+
+                <p>And if the network never redirects you to this page, well as you can
+                see, you're not missing much.</p>
+            </div>
+        </div>
+        <script>
+            (function() {
+                document.title = document.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3') + document.title;
+                let t = document.getElementsByTagName('domain');
+                for(let i = 0; i < t.length; i++) {
+                    t[i].innerHTML=window.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3');
+                }
+            }())
+        </script>
+    </body>
+</html>

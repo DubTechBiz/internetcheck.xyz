@@ -1,0 +1,3 @@
+[submodule "BasicFunctions"]
+	path = src/BasicFunctions
+	url = https://github.com/Dubz/BasicFunctions

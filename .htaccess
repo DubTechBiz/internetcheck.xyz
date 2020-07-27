@@ -1,0 +1,17 @@
+# Disallow (although most likely useless, added anyways)
+Options -Indexes
+
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+
+# LetsEncrypt
+RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/.+$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[0-9a-zA-Z_-]+$
+
+# Forward to PHP script handler
+RewriteRule ^(.+)$ request.php?req=$1 [NC,QSA,L] 
+DirectoryIndex request.php
