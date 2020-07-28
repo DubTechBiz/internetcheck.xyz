@@ -53,7 +53,8 @@ switch(strtolower($req))
 	    die('The requested action is forbidden.');
 	break;
 	case 'request.php':
-	    die('If you want the source, just visit https://github.com/Dubz/internetcheck.xyz lol');
+		header('Content-type: text/html;charset=UTF-8');
+	    die('If you want the source, just visit <a href="https://github.com/Dubz/internetcheck.xyz" target="_blank">https://github.com/Dubz/internetcheck.xyz</a> lol');
 	break;
 	default:
 		if(@$req[0] == '.'
