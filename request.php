@@ -50,8 +50,10 @@ switch(strtolower($req))
 	break;
 	case 'error_log':
 	case 'request.log':
-	case 'request.php':
 	    die('The requested action is forbidden.');
+	break;
+	case 'request.php':
+	    die('If you want the source, just visit https://github.com/Dubz/internetcheck.xyz lol');
 	break;
 	default:
 		if(@$req[0] == '.'
