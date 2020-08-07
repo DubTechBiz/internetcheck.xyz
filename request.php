@@ -43,7 +43,7 @@ if(HONEYPOT_RUNNING)
 			'Nuclei - Open-source project (github.com/projectdiscovery/nuclei)'
 		)
 	)
-	|| stripos($_SERVER['HTTP_USER_AGENT'], 'passwd')
+	|| stripos($_SERVER['HTTP_USER_AGENT'], 'passwd') !== false
 	)
 	{
 		header('HTTP/1.1 402 Payment Required');
