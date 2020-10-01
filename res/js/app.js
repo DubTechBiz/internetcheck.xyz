@@ -13,10 +13,10 @@ const redirect = () => {
     let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
 	// Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
     if(approved_domains.indexOf(window.location.host.replace(/^.*?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2'))===-1) {
-	    window.location.href = 'http://' + sub + '.internetcheck.xyz/online'; 
+	    window.location.href = 'http://' + sub + '.internetcheck.xyz/'; 
     }
     else {
-	    window.location.href = 'http://' + sub + '.' + window.location.hostname.replace(/^.*?((?:dev|lo|local)\.)?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2$3') + '/online'; 
+	    window.location.href = 'http://' + sub + '.' + window.location.hostname.replace(/^.*?((?:dev|lo|local)\.)?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2$3') + '/'; 
     }
 }
 const secure_page = () => {
@@ -43,7 +43,9 @@ $(document).on("click", "#btnSecurePage", secure_page);
 // Init
 (function() {
     replace();
-    if(window.location.pathname!=='/online' && (!window.location.pathname.match(/\/(index|online)\.html$/i))) {
+    // No sense in redirecting if we're already where we want to be
+    // Also disabled for local files, so development is easier
+    if(window.location.pathname!=='/online' && (window.location.protocol==='file:' && !window.location.pathname.match(/\/(index|online)\.html$/i))) {
     	redirect();
     }
 }())
