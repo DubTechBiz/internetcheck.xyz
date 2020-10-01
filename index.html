@@ -2,27 +2,33 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <title>Connecting...</title>
-        <link rel="stylesheet" type="text/css" href="./res/css/custom.css" />
+        <title>Checking...</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="./res/css/bootstrap.min.css" />
+        <!-- <link rel="stylesheet" type="text/css" href="./res/css/app.css" /> -->
     </head>
-    <body>
-        <div class="header xlsx-neutral">
-            <div class="container">
-                <h1>Please wait...</h1>
+    <body class="bg-dark text-light">
+        <div class="container">
+            <div class="row text-center text-warning">
+                <div class="col-12">
+                    <h1>Please wait...</h1>
+                    <h3><small class="text-muted">Checking ...</small></h3>
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <div class="container">
-                <h1>Connecting ...</h1>
+            <noscript>
+            <div class="row text-center text-danger">
+                <div class="col-12">
+                    <p>
+                        Uh-oh! Your browser's JavaScript is disabled.<br>
+                        Please enable JavaScript, then try again.
+                    </p>
+                </div>
             </div>
+            </noscript>
         </div>
-        <script>
-            (function() {
-                document.title = document.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3') + ' - ' + document.title;
-                const prefix = 'bcdfhklmnrstvwxz';
-                let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
-                window.location.href = 'http://' + sub + '.' + window.location.hostname.replace(/^.*?((?:dev|lo|local)\.|)([^\.]+\.)([^\.]+)$/, '$1$2$3') + '/online'; 
-            }())
-        </script>
+        <script type="application/javascript" src="./res/js/jquery-3.5.1.min.js"></script>
+        <script type="application/javascript" src="./res/js/bootstrap.bundle.min.js"></script>
+        <script type="application/javascript" src="./res/js/app.js"></script>
     </body>
 </html>
