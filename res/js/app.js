@@ -30,10 +30,10 @@ const secure_page = () => {
 	}
 }
 const replace = () => {
-    document.title = document.location.hostname.replace(/^.*?((?:dev|lo|local)\.)?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2$3') + ' - ' + document.title;
+    document.title = domain + ' - ' + document.title;
     let t = document.getElementsByTagName('domain');
     for(let i = 0; i < t.length; i++) {
-        t[i].innerHTML=window.location.hostname.replace(/^.*?((?:dev|lo|local)\.)?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2$3');
+        t[i].innerHTML=domain;
     }
 }
 
@@ -43,10 +43,20 @@ $(document).on("click", "#btnSecurePage", () => {secure_page()});
 
 // Init
 (function() {
-    replace();
+	if(domain) {
+	    replace();
+	}
     // No sense in redirecting if we're already where we want to be
     // Also disabled for local files, so development is easier
     if(window.location.pathname!=='/online' && window.location.protocol!=='file:') {
     	redirect('online');
+    }
+    for(let i = 0; i < approved_domains.length; i++) {
+    	if(approved_domains[i]===root_domain) {
+		    $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a> &lt;-- You are here!</li>');
+    	}
+    	else {
+		    $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a></li>');
+    	}
     }
 }())
