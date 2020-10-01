@@ -10,6 +10,7 @@ const subdomain = window.location.host.replace(/^(.*?)\.(?:(?:dev|lo|local)\.)?[
 
 // Functions
 const redirect = (path) => {
+	path = path || '';
     let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
 	// Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
     if(approved_domains.indexOf(root_domain)===-1) {
@@ -37,8 +38,8 @@ const replace = () => {
 }
 
 // Hooks
-$(document).on("click", "#btnRecheck", redirect);
-$(document).on("click", "#btnSecurePage", secure_page);
+$(document).on("click", "#btnRecheck", () => {redirect()});
+$(document).on("click", "#btnSecurePage", () => {secure_page()});
 
 // Init
 (function() {
