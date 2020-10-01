@@ -45,7 +45,7 @@ $(document).on("click", "#btnSecurePage", secure_page);
     replace();
     // No sense in redirecting if we're already where we want to be
     // Also disabled for local files, so development is easier
-    if(window.location.pathname!=='/online' && (window.location.protocol==='file:' && !window.location.pathname.match(/\/(index|online)\.html$/i))) {
+    if(window.location.pathname!=='/online' && (window.location.protocol!=='file:' && !window.location.pathname.match(/\/(index|online)\.html$/i))) {
     	redirect();
     }
 }())
