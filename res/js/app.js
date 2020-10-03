@@ -38,7 +38,7 @@ const replace = () => {
 }
 
 // Hooks
-$(document).on("click", "#btnRecheck", () => {redirect()});
+$(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
 $(document).on("click", "#btnSecurePage", () => {secure_page()});
 
 // Init
