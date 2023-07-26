@@ -8,3 +8,4 @@ Alternative domains include:
 - internettest.xyz
 - networkcheck.xyz
 - networktest.xyz
+- http.rocks
