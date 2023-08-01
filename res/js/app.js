@@ -10,24 +10,24 @@ const subdomain = window.location.host.replace(/^(.*?)\.(?:(?:dev|lo|local)\.)?[
 
 // Functions
 const redirect = (path) => {
-	path = path || '';
+    path = path || '';
     let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
-	// Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
+    // Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
     if(approved_domains.indexOf(root_domain)===-1) {
-	    window.location.href = 'http://' + sub + '.internetcheck.xyz/' + path; 
+        window.location.href = 'http://' + sub + '.internetcheck.xyz/' + path; 
     }
     else {
-	    window.location.href = 'http://' + sub + '.' + domain + '/' + path;
+        window.location.href = 'http://' + sub + '.' + domain + '/' + path;
     }
 }
 const secure_page = () => {
     let sub = subdomain || prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
     if(approved_domains.indexOf(root_domain)===-1) {
-		window.location.href = 'https://secure.internetcheck.xyz' + window.location.pathname;
-	}
-	else {
-		window.location.href = 'https://secure.' + root_domain + window.location.pathname;
-	}
+        window.location.href = 'https://secure.internetcheck.xyz' + window.location.pathname;
+    }
+    else {
+        window.location.href = 'https://secure.' + root_domain + window.location.pathname;
+    }
 }
 const replace = () => {
     document.title = domain + ' - ' + document.title;
@@ -43,20 +43,20 @@ $(document).on("click", "#btnSecurePage", () => {secure_page()});
 
 // Init
 (function() {
-	if(domain) {
-	    replace();
-	}
+    if(domain) {
+        replace();
+    }
     // No sense in redirecting if we're already where we want to be
     // Also disabled for local files, so development is easier
     if(window.location.pathname!=='/online' && window.location.protocol!=='file:') {
-    	redirect('online');
+        redirect('online');
     }
     for(let i = 0; i < approved_domains.length; i++) {
-    	if(approved_domains[i]===root_domain) {
-		    $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a> &lt;-- You are here!</li>');
-    	}
-    	else {
-		    $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a></li>');
-    	}
+        if(approved_domains[i]===root_domain) {
+            $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a> &lt;-- You are here!</li>');
+        }
+        else {
+            $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a></li>');
+        }
     }
 }())
