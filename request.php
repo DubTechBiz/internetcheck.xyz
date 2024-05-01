@@ -70,7 +70,7 @@ switch(strtolower($req))
 	break;
 	case 'request.php':
 		header('Content-type: text/html;charset=UTF-8');
-	    die('If you want the source, just visit <a href="https://github.com/Dubz/internetcheck.xyz" target="_blank">https://github.com/Dubz/internetcheck.xyz</a> lol');
+	    die('If you want the source, just visit <a href="https://github.com/DubTechBiz/internetcheck.xyz" target="_blank">https://github.com/DubTechBiz/internetcheck.xyz</a> lol');
 	break;
 	default:
 		if(@$req[0] == '.'
