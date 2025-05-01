@@ -1,5 +1,4 @@
 name = "internetcheck"
-main ="./_worker.js"
 
 account_id = "b53a94dbb915dc3f10629470c2cf2fed"
 
