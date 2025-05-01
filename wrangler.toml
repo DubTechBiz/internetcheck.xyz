@@ -2,7 +2,8 @@ name = "internetcheck"
 main ="./_worker.js"
 
 account_id = "b53a94dbb915dc3f10629470c2cf2fed"
-zone_id = "8595afd68f782f47576db106ed4c1e13"
+
+compatibility_date = "2025-05-01"
 
 routes = [
   "http://internetcheck.xyz/*",
