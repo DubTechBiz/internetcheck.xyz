@@ -1,0 +1,22 @@
+name = "internetcheck"
+type = "site"
+
+account_id = "b53a94dbb915dc3f10629470c2cf2fed"
+zone_id = "8595afd68f782f47576db106ed4c1e13"
+
+routes = [
+  "http://internetcheck.xyz/*",
+  "http://*.internetcheck.xyz/*",
+  "http://networktest.xyz/*",
+  "http://*.networktest.xyz/*",
+  "http://networkcheck.xyz/*",
+  "http://*.networkcheck.xyz/*",
+  "http://http.rocks/*",
+  "http://*.http.rocks/*"
+]
+
+workers_dev = false
+
+[site]
+bucket = "."
+entry-point = "workers-site"
