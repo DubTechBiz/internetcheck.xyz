@@ -1,5 +1,5 @@
 name = "internetcheck"
-type = "site"
+main ="./_worker.js"
 
 account_id = "b53a94dbb915dc3f10629470c2cf2fed"
 zone_id = "8595afd68f782f47576db106ed4c1e13"
@@ -19,4 +19,3 @@ workers_dev = false
 
 [site]
 bucket = "."
-entry-point = "workers-site"
