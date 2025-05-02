@@ -1,0 +1,45 @@
+{
+  "name": "internetcheck",
+  "account_id": "b53a94dbb915dc3f10629470c2cf2fed",
+
+  // Required for Wrangler v3+: locks in behavior versioning
+  "compatibility_date": "2025-05-02",
+
+  // Use your own domain — not *.workers.dev
+  "workers_dev": false,
+
+  "env": {
+    "prod": {
+      // Serve static files from the root directory
+      "assets": {
+        "directory": "."
+      },
+
+      // Apply this Worker to multiple HTTP domains and subdomains
+      "routes": [
+        "http://internetcheck.xyz/*",
+        "http://*.internetcheck.xyz/*",
+        "http://internettest.xyz/*",
+        "http://*.internettest.xyz/*",
+        "http://networkcheck.xyz/*",
+        "http://*.networkcheck.xyz/*",
+        "http://networktest.xyz/*",
+        "http://*.networktest.xyz/*",
+        "http://http.rocks/*",
+        "http://*.http.rocks/*"
+      ]
+    },
+    "dev": {
+      // Serve static files from the root directory
+      "assets": {
+        "directory": "."
+      },
+
+      // Apply this Worker to multiple HTTP domains and subdomains
+      "routes": [
+        "http://networkstest.xyz/*",
+        "http://*.networkstest.xyz/*"
+      ]
+    }
+  }
+}
