@@ -17,11 +17,11 @@
 
       // Apply this Worker to multiple HTTP domains and subdomains
       "routes": [
-        {"pattern": "http://*internetcheck.xyz/*", "zone_id": "8595afd68f782f47576db106ed4c1e13"},
-        {"pattern": "http://*internettest.xyz/*", "zone_id": "63bd3306958632e59bd6e5b9a0ed4acc"},
-        {"pattern": "http://*networkcheck.xyz/*", "zone_id": "c7464304d3d709d4e73d1d7d946760c1"},
-        {"pattern": "http://*networktest.xyz/*", "zone_id": "d93b64522ca5c2bf0f6d358e219cd4d0"},
-        {"pattern": "http://*http.rocks/*", "zone_id": "7dcb81e182ac463d380a9ce07d167ba0"},
+        {"pattern": "*internetcheck.xyz/*", "zone_id": "8595afd68f782f47576db106ed4c1e13"},
+        {"pattern": "*internettest.xyz/*", "zone_id": "63bd3306958632e59bd6e5b9a0ed4acc"},
+        {"pattern": "*networkcheck.xyz/*", "zone_id": "c7464304d3d709d4e73d1d7d946760c1"},
+        {"pattern": "*networktest.xyz/*", "zone_id": "d93b64522ca5c2bf0f6d358e219cd4d0"},
+        {"pattern": "*http.rocks/*", "zone_id": "7dcb81e182ac463d380a9ce07d167ba0"},
       ]
     },
     "dev": {
@@ -32,7 +32,7 @@
 
       // Apply this Worker to multiple HTTP domains and subdomains
       "routes": [
-        {"pattern": "http://*networkstest.xyz/*", "zone_id": "1bf9caa824b74a55e36da9ca46ab8eb9"}
+        {"pattern": "*networkstest.xyz/*", "zone_id": "1bf9caa824b74a55e36da9ca46ab8eb9"}
       ]
     }
   }
