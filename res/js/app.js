@@ -60,4 +60,9 @@ $(document).on("click", "#btnSecurePage", () => {secure_page()});
             $("#approvedDomains").append('<li><a target="_blank" href="http://' + approved_domains[i] + '">' + approved_domains[i] + '</a></li>');
         }
     }
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(() => console.log('Service Worker registered'))
+            .catch(err => console.error('Service Worker registration failed:', err));
+    }
 }())
