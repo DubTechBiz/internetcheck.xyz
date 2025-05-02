@@ -8,14 +8,38 @@
   // Use your own domain — not *.workers.dev
   "workers_dev": false,
 
-  // Serve static files from the root directory
-  "site": {
-    "bucket": "."
-  },
+  "env": {
+    "prod": {
+      // Serve static files from the root directory
+      "site": {
+        "bucket": "."
+      },
 
-  // Apply this Worker to multiple HTTP domains and subdomains
-  "routes": [
-    "http://networkstest.xyz/*",
-    "http://*.networkstest.xyz/*"
-  ]
+      // Apply this Worker to multiple HTTP domains and subdomains
+      "routes": [
+        "http://internetcheck.xyz/*",
+        "http://*.internetcheck.xyz/*",
+        "http://internettest.xyz/*",
+        "http://*.internettest.xyz/*",
+        "http://networkcheck.xyz/*",
+        "http://*.networkcheck.xyz/*",
+        "http://networktest.xyz/*",
+        "http://*.networktest.xyz/*",
+        "http://http.rocks/*",
+        "http://*.http.rocks/*"
+      ]
+    },
+    "dev": {
+      // Serve static files from the root directory
+      "site": {
+        "bucket": "."
+      },
+
+      // Apply this Worker to multiple HTTP domains and subdomains
+      "routes": [
+        "http://networkstest.xyz/*",
+        "http://*.networkstest.xyz/*"
+      ]
+    }
+  }
 }
