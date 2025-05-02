@@ -2,6 +2,7 @@
 // Config
 const prefix = 'bcdfhklmnrstvwxz';
 const approved_domains = ['internetcheck.xyz', 'internettest.xyz', 'networkcheck.xyz', 'networktest.xyz', 'http.rocks'];
+const dev_domains = ['networkstest.xyz'];
 
 // Dynamic constants
 const root_domain = window.location.host.replace(/^.*?([0-9a-z\-]+\.)([0-9a-z\-]+)$/, '$1$2');
@@ -13,7 +14,7 @@ const redirect = (path) => {
     path = path || '';
     let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
     // Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
-    if(approved_domains.indexOf(root_domain)===-1) {
+    if(approved_domains.indexOf(root_domain)===-1 && dev_domains.indexOf(root_domain)===-1) {
         window.location.href = 'http://' + sub + '.internetcheck.xyz/' + path; 
     }
     else {
@@ -22,7 +23,7 @@ const redirect = (path) => {
 }
 const secure_page = () => {
     let sub = subdomain || prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
-    if(approved_domains.indexOf(root_domain)===-1) {
+    if(approved_domains.indexOf(root_domain)===-1 && dev_domains.indexOf(root_domain)===-1) {
         window.location.href = 'https://secure.internetcheck.xyz' + window.location.pathname;
     }
     else {
