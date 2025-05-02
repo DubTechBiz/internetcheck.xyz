@@ -1,0 +1,25 @@
+CACHE MANIFEST
+# 2025-05-02 1506
+CACHE:
+/
+/index
+/index.html
+/offline
+/offline.html
+
+/res/icons/iconfinder_Web_171330_128.png
+/res/icons/iconfinder_Web_171330_150.png
+/res/css/bootstrap.min.css
+/res/js/jquery-3.5.1.min.js
+/res/js/bootstrap.bundle.min.js
+/res/js/app.js
+
+
+NETWORK:
+/online
+/online.html
+
+
+FALLBACK:
+/online /offline
+/online.html /offline
