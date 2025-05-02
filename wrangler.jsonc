@@ -11,8 +11,8 @@
   "env": {
     "prod": {
       // Serve static files from the root directory
-      "site": {
-        "bucket": "."
+      "assets": {
+        "directory": "."
       },
 
       // Apply this Worker to multiple HTTP domains and subdomains
@@ -31,8 +31,8 @@
     },
     "dev": {
       // Serve static files from the root directory
-      "site": {
-        "bucket": "."
+      "assets": {
+        "directory": "."
       },
 
       // Apply this Worker to multiple HTTP domains and subdomains
