@@ -39,6 +39,9 @@ const replace = () => {
 }
 
 // Hooks
+// Update the manifest cache locally when updates are downloaded
+window.applicationCache.addEventListener('updateready', window.applicationCache.swapCache);
+// Page buttons
 $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
 $(document).on("click", "#btnSecurePage", () => {secure_page()});
 
