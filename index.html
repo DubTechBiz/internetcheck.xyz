@@ -1,8 +1,8 @@
 <!-- https://github.com/DubTechBiz/internetcheck.xyz -->
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
     <head>
-        <title>Checking...</title>
+        <title>Helping you get online</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="shortcut icon" type="image/png" href="./res/icons/iconfinder_Web_171330_128.png">
@@ -10,26 +10,142 @@
         <link rel="stylesheet" type="text/css" href="./res/css/bootstrap.min.css" />
         <!-- <link rel="stylesheet" type="text/css" href="./res/css/app.css" /> -->
     </head>
-    <body class="bg-dark text-light">
-        <div class="container">
-            <div class="row text-center text-warning">
+    <body>
+        <div class="container my-1">
+            <!-- Main overall page status -->
+            <div class="row mt-4 text-center">
+                <!-- <div id="status" class="col-12">
+                    <h1 class="text-warning">Please wait...</h1>
+                    <div class="spinner-border text-warning" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h1 class="text-success d-none">Online</h1>
+                    <h1 class="text-danger d-none">Offline</h1>
+                </div> -->
                 <div class="col-12">
-                    <h1>Please wait...</h1>
-                    <h3><small class="text-muted">Checking ...</small></h3>
+                    <h1>Internet Test</h1>
+                    <p>Helping users get online since 2020.</p>
+                </div>
+                <div class="col-12">
+                    <button id="btnRecheck" class="btn btn-outline-success" disabled="disabled">Re-check</button>
+                </div>
+                <div class="col-12">
+                    <noscript>
+                        <h2 class="text-danger">Error</h2>
+                        <p class="text-danger">
+                            Uh-oh! Your browser's JavaScript is disabled.<br>
+                            JavaScript is required to use this tool.<br>
+                            Please enable JavaScript, then try again.
+                        </p>
+                    </noscript>
                 </div>
             </div>
-            <noscript>
-            <div class="row text-center text-danger">
-                <div class="col-12">
-                    <p>
-                        Uh-oh! Your browser's JavaScript is disabled.<br>
-                        Please enable JavaScript, then try again.
-                    </p>
+            <!-- Test status -->
+            <div class="row" id="status_tests">
+                <div class="col-lg-6">
+                    <h3 class="text-center">System Tests</h3>
+                    <dl class="row">
+                        <dt class="col-6">Secure (HTTPS):</dt>
+                        <dd class="col-6" id="status_https">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="yes" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none">Yes</span>
+                            <span data-status="dev" class="badge bg-info-subtle border border-info-subtle text-info-emphasis d-none">Dev</span>
+                            <span data-status="no" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none">No</span>
+                        </dd>
+                        
+                        <dt class="col-6">Domain:</dt>
+                        <dd class="col-6"><domain>N/A</domain></dd>
+
+                        <!-- <dt class="col-6">Application Status:</dt>
+                        <dd class="col-6" id="status_app">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="installed" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none">Installed</span>
+                            <span data-status="installing" class="badge bg-info-subtle border border-info-subtle text-info-emphasis d-none">Installing...</span>
+                            <span data-status="updating" class="badge bg-info-subtle border border-info-subtle text-info-emphasis d-none">Updating...</span>
+                            <span data-status="error" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none">Error</span>
+                            <span data-status="unsupported" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Your browser does not support service workers, which allows this tool to work even while offline. You can still reach the domain and use the site with internet.">Unsupported</span>
+                        </dd> -->
+
+                        <dt class="col-6">Secure DNS:</dt>
+                        <dd class="col-6" id="status_secure_dns">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="pass" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Nobody listening on the wire can see the DNS queries you make when you are browsing the Internet.">Secure</span>
+                            <span data-status="unknown" class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="We weren’t able to detect whether you were using a DNS resolver over secure transport. Contact your DNS provider or try using 1.1.1.1 for fast & secure DNS.">Unknown</span>
+                            <span data-status="fail" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-html="true" data-bs-title="We detected you’re using Cloudflare (a secure DNS resolver), but not over a secure connection. <br> Anybody listening on the wire can see the DNS queries you make when using the Internet.">Unsecure</span>
+                        </dd>
+
+                        <dt class="col-6">DNSSEC Test:</dt>
+                        <dd class="col-6" id="status_dnssec">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="pass" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Attackers cannot trick you into visiting a fake website by manipulating DNS responses for domains that are outside their control.">Blocked</span>
+                            <span data-status="fail" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Attackers can fake DNS responses for domains they don't control and trick you into visiting a malicious website.">Not Blocked</span>
+                        </dd>
+
+                        <dt class="col-6">TLS v1.3:</dt>
+                        <dd class="col-6" id="status_tlsv13">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="pass" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Nobody snooping on the wire can see the certificate of the website you made a TLS connection to.">Pass</span>
+                            <span data-status="fail" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Anybody listening on the wire can see the certificate of the website you made a TLS connection to.">Fail</span>
+                        </dd>
+
+                        <dt class="col-6">Secure SNI:</dt>
+                        <dd class="col-6" id="status_secure_sni">
+                            <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                            <span data-status="pass" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Nobody listening on the wire can see the website you made a TLS connection to.">Pass</span>
+                            <span data-status="fail" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Anybody listening on the wire can see the exact website you made a TLS connection to.">Fail</span>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-center">Reachability Tests</h3>
+                    <div id="app_tests" class="col-12">
+                        <div class="row" data-target="Internet">
+                            <div class="col-6 fw-bold">Internet</div>
+                            <div class="col-3">
+                                <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
+                                <span data-status="success" class="badge bg-success-subtle border border-success-subtle text-success-emphasis d-none">Success</span>
+                                <span data-status="fail" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none">Failed</span>
+                                <span data-status="error" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none">Error!</span>
+                            </div>
+                            <div class="col-3">-</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </noscript>
+            <div class="row py-2"></div>
+            <!-- The 3 W's -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <h2 class="text-center">What?</h2>
+                    <p>This website is for when you try to get online on a guest WiFi network, and nothing happens. You may even get a security alert when attempting to visit websites while connected to it. Type "http://<domain>internetcheck.xyz</domain>" into your browser's URL bar, and you'll be able to get the splash page up to log on.</p>
+
+                    <h5 class="text-center">Pro tip:</h5>
+                    <p>This works on <u>all</u> devices with an internet browser. That includes laptops, phones, tablets, gaming consoles, and even Smart TVs! Although not all Smart TVs have a built in web browser, in which case, this method will not work for them.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h2 class="text-center">How?</h2>
+                    <p><domain>internetcheck.xyz</domain> will never force SSL (also known as TLS). No encryption, no strong authentication, no <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security" target="_blank">HSTS</a>, no HTTP/2 or HTTP/3, just plain old unencrypted HTTP and forever stuck in the dark ages of internet security.<br><br>This basically means the guest WiFi router will be allowed to hijack your request to this site, and instead display their splash page.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h2 class="text-center">Why?</h2>
+                    <p>Normally, not using SSL is a bad idea. You should always use SSL and secure encryption when possible. In fact, it's such a bad idea, that most websites are now using https by default. Google will actually penalize sites that don't use it, and prevent them from showing at the top of their search results.<br><br>All of that is great, but it also means that if you're relying on poorly-behaved WiFi networks, it can be hard to get online. Secure browsers and websites using https make it impossible for those WiFi networks to send you to a login or payment page. Basically, those networks can't hijack your connection (just like attackers can't).</p>
+                </div>
+            </div>
+            <div class="row py-2"></div>
+            <div class="row">
+                <div class="col-12">
+                    <h2>Similar domains:</h2>
+                    <p>Below are a list of domains that also point to this site.
+                    Some may be easier to remember than others. Feel free to note any down,
+                    or just add them to your bookmarks!*</p>
+                    <ul id="approvedDomains"></ul>
+                </div>
+                <div class="col-12">
+                    <small>* When using the page from your bookmarks, be sure to click the Re-check button at least once to actually run the test!</small>
+                </div>
+            </div>
         </div>
-        <script type="application/javascript" src="./res/js/jquery-3.5.1.min.js"></script>
+        <script type="application/javascript" src="./res/js/jquery-3.7.1.min.js"></script>
         <script type="application/javascript" src="./res/js/bootstrap.bundle.min.js"></script>
         <script type="application/javascript" src="./res/js/app.js"></script>
     </body>
