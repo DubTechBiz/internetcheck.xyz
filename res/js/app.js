@@ -54,6 +54,10 @@ const InternetCheck = {
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
         $(document).on("click", "#btnRecheck", () => {InternetCheck.redirect();});
+        // Upgrade to HTTPS
+        $("#status_https>span[data-status=no]").on('click', () => {
+            window.location.href = window.location.href.replace('http://', 'https://');
+        })
         // $(document).on("click", "#btnSecurePage", InternetCheck.secure_page);
 
         // List approved/dev domains, flag the one we're visiting
@@ -100,8 +104,8 @@ const InternetCheck = {
         //     return InternetCheck.redirect('online');
 
         // Upgrade to HTTPS
-        if(!is_https)
-            return window.location.href = window.location.href.replace('http://', 'https://');
+        // if(!is_https)
+        //     return window.location.href = window.location.href.replace('http://', 'https://');
 
         // Update HTML <domain> tags to show the root domain we're on
         InternetCheck.replace_domain();
