@@ -125,7 +125,7 @@ https://:subdomain.networkstest.xyz/
  Access-Control-Allow-Methods: GET
 
 https://:subdomain.networkstest.xyz/ping
- Access-Control-Allow-Origin: https://networkstest.xyz
+ Access-Control-Allow-Origin: https://networkstest.xyz https://internetcheck.dubtech.dev
  Access-Control-Allow-Methods: GET
  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
  Pragma: no-cache
