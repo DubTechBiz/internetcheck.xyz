@@ -50,7 +50,7 @@ const InternetCheck = {
     init: function() {
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
-        $(document).on("click", "#btnRecheck", () => InternetCheck.redirect);
+        $(document).on("click", "#btnRecheck", () => {InternetCheck.redirect();});
         // $(document).on("click", "#btnSecurePage", InternetCheck.secure_page);
 
         // List approved/dev domains, flag the one we're visiting
