@@ -217,7 +217,7 @@ const InternetCheck = {
         r.find('div:nth-child(1)').text("Internet");
         r = d.append(r).find('div.row[data-target="Internet"]')
         const startTime = Date.now();
-        $.get("https://" + InternetCheck.randomstr + "-" + domain + "/ping.txt")
+        $.get("https://" + InternetCheck.randomstr + "." + domain + "/ping.txt")
             .done(() => {
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').children('span[data-status]').addClass('d-none')
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').find("span[data-status=success]").removeClass('d-none')
