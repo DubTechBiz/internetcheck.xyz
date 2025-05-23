@@ -2,10 +2,12 @@
 // Config
 const prefix = 'bcdfhklmnrstvwxz';
 const approved_domains = ['internetcheck.xyz', 'internettest.xyz', 'networkcheck.xyz', 'networktest.xyz', 'http.rocks'];
-const dev_domains = ['networkstest.xyz', 'internetcheck.dubtech.dev'];
+const beta_domains = ['networkstest.xyz'];
+const dev_domains = ['internetcheck.dubtech.dev'];
 let domain = !1,
     rootdomain = !1,
     subdomain = !1,
+    betadomain = !1,
     devdomain = !1;
 
 
@@ -48,7 +50,7 @@ const InternetCheck = {
     init: function() {
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
-        $(document).on("click", "#btnRecheck", InternetCheck.redirect);
+        $(document).on("click", "#btnRecheck", () => InternetCheck.redirect);
         // $(document).on("click", "#btnSecurePage", InternetCheck.secure_page);
 
         // List approved/dev domains, flag the one we're visiting
@@ -62,6 +64,16 @@ const InternetCheck = {
                 h += ' &lt;-- You are here!';
             }
             $("#approvedDomains").append(h + '</li>');
+        }
+        for(let i in beta_domains) {
+            let d = beta_domains[i];
+            if(window.location.host.endsWith(d)) {
+                domain = window.location.host;
+                rootdomain = d;
+                subdomain = domain!=rootdomain ? domain.replace(rootdomain, '').substr(0, (domain.length-rootdomain.length)-1) : !1;
+                betadomain=!0
+                $("#approvedDomains").append('<li><a target="_blank" href="http://' + rootdomain + '">' + rootdomain + '</a> &lt;-- You are <i>testing</i> here!</li>');
+            }
         }
         for(let i in dev_domains) {
             let d = dev_domains[i];
@@ -105,6 +117,10 @@ const InternetCheck = {
         if(!domain) {
             console.log('Redirecting to: http://' + sub + '.internetcheck.xyz/' + p);
             window.location.href = 'http://' + sub + '.internetcheck.xyz/' + p;
+        }
+        else if(devdomain) {
+            console.log('Redirecting to: http://' + sub + '.' + rootdomain + '/' + p);
+            window.location.href = 'http://' + sub + '-' + rootdomain + '/' + p;
         }
         else {
             console.log('Redirecting to: http://' + sub + '.' + rootdomain + '/' + p);
