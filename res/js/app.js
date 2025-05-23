@@ -19,8 +19,6 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 // Functions
-const redirect = (path) => {
-};
 const InternetCheck = {
     results: $("#app_tests>div").clone(),
 
@@ -78,15 +76,15 @@ const InternetCheck = {
 
         // Lock access to our approved/dev domains only
         if(!domain)
-            window.location.href = 'http://' + approved_domains[0];
+            return window.location.href = 'http://' + approved_domains[0];
 
         // Online test
         if(window.location.pathname != '/online')
-            InternetCheck.redirect('online');
+            return InternetCheck.redirect('online');
 
         // Upgrade to HTTPS
         if(!is_https)
-            window.location.href = window.location.href.replace('http://', 'https://');
+            return window.location.href = window.location.href.replace('http://', 'https://');
 
         // Update HTML <domain> tags to show the root domain we're on
         InternetCheck.replace_domain();
