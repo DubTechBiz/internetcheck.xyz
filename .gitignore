@@ -2,7 +2,3 @@
 /sftp-config.json
 *.log
 error_log
-
-# Testing...
-online.html
-offline.html
