@@ -92,8 +92,9 @@ const InternetCheck = {
 
         // Online test
         console.log(window.location.pathname);
-        if(window.location.pathname != '/online')
-            return InternetCheck.redirect('online');
+        // We don't actually need this since the button regenerates the subdomain to redirect to
+        // if(window.location.pathname != '/online')
+        //     return InternetCheck.redirect('online');
 
         // Upgrade to HTTPS
         if(!is_https)
