@@ -219,9 +219,10 @@ const InternetCheck = {
         const startTime = Date.now();
         $.get("https://" + InternetCheck.randomstr + "." + domain + "/ping")
             .done(() => {
+                const stopTime = Date.now()
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').children('span[data-status]').addClass('d-none')
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').find("span[data-status=success]").removeClass('d-none')
-                $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(3)').text((Date.now() - startTime) + 'ms')
+                $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(3)').text((stopTime-startTime) + 'ms')
             })
             .fail(() => {
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').children('span[data-status]').addClass('d-none')
