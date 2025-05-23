@@ -79,6 +79,7 @@ const InternetCheck = {
             return window.location.href = 'http://' + approved_domains[0];
 
         // Online test
+        console.log(window.location.pathname);
         if(window.location.pathname != '/online')
             return InternetCheck.redirect('online');
 
