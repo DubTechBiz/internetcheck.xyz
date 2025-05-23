@@ -3,13 +3,16 @@
 const prefix = 'bcdfhklmnrstvwxz';
 const approved_domains = ['internetcheck.xyz', 'internettest.xyz', 'networkcheck.xyz', 'networktest.xyz', 'http.rocks'];
 const dev_domains = ['networkstest.xyz', 'internetcheck.dubtech.dev'];
+let domain = !1,
+    rootdomain = !1,
+    subdomain = !1,
+    devdomain = !1;
 
 
 const is_https = location.protocol=='https:';
 const is_file = location.protocol=='file:';
 
 // This will return domain[:port]
-const domain = window.location.host;
 
 // Engage jQuery tooltips on page
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -17,18 +20,8 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 
 // Functions
 const redirect = (path) => {
-    path = path || '';
-    let sub = prefix.split('').sort(function(){return 0.5-Math.random()}).join('')
-    // Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
-    if(approved_domains.indexOf(root_domain)===-1 && dev_domains.indexOf(root_domain)===-1) {
-        window.location.href = 'http://' + sub + '.internetcheck.xyz/' + path;
-    }
-    else {
-        window.location.href = 'http://' + sub + '.' + domain + '/' + path;
-    }
 };
 const InternetCheck = {
-    approved_domain: false,
     results: $("#app_tests>div").clone(),
 
     reachability_test: [
@@ -54,32 +47,49 @@ const InternetCheck = {
 
     esni: {},
 
-    init: async function() {
+    init: function() {
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
-        $(document).on("click", "#btnRecheck", InternetCheck.test);
+        $(document).on("click", "#btnRecheck", InternetCheck.redirect);
         // $(document).on("click", "#btnSecurePage", InternetCheck.secure_page);
-        if(domain) {
-            InternetCheck.replace_domain();
-        }
 
+        // List approved/dev domains, flag the one we're visiting
         for(let i in approved_domains) {
             let d = approved_domains[i];
             let h = '<li><a target="_blank" href="http://' + d + '">' + d + '</a>'
-            if(d == domain) {
+            if(window.location.host.endsWith(d)) {
+                domain = window.location.host;
+                rootdomain = d;
+                subdomain = domain!=rootdomain ? domain.replace(rootdomain, '').substr(0, (domain.length-rootdomain.length)-1) : !1;
                 h += ' &lt;-- You are here!';
-                InternetCheck.approved_domain = true;
             }
             $("#approvedDomains").append(h + '</li>');
         }
-        if(dev_domains.indexOf(domain) !== -1) {
-            $("#approvedDomains").append('<li><a target="_blank" href="http://' + domain + '">' + domain + '</a> &lt;-- You are <i>developing</i> here!</li>');
-            InternetCheck.approved_domain = true;
+        for(let i in dev_domains) {
+            let d = dev_domains[i];
+            if(window.location.host.endsWith(d)) {
+                domain = window.location.host;
+                rootdomain = d;
+                subdomain = domain!=rootdomain ? domain.replace(rootdomain, '').substr(0, (domain.length-rootdomain.length)-1) : !1;
+                devdomain=!0
+                $("#approvedDomains").append('<li><a target="_blank" href="http://' + rootdomain + '">' + rootdomain + '</a> &lt;-- You are <i>developing</i> here!</li>');
+            }
         }
 
-        // Lock access to our approved domains only (needs work)
-        // if(!InternetCheck.approved_domain)
-        //     window.location.href = 'http://' + approved_domains[0];
+        // Lock access to our approved/dev domains only
+        if(!domain)
+            window.location.href = 'http://' + approved_domains[0];
+
+        // Online test
+        if(window.location.pathname != '/online')
+            InternetCheck.redirect('online');
+
+        // Upgrade to HTTPS
+        if(!is_https)
+            window.location.href = window.location.href.replace('http://', 'https://');
+
+        // Update HTML <domain> tags to show the root domain we're on
+        InternetCheck.replace_domain();
 
         InternetCheck.updatestatus();
         // This is a potential development path, but conflicts with the core function since they only run on HTTPS pages.
@@ -89,7 +99,21 @@ const InternetCheck = {
     genrand: function() {
         return typeof crypto != 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2)
     },
-    test: function() {
+    redirect: function(p) {
+        p = p || '';
+        let sub = InternetCheck.genrand();
+        // Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
+        if(!domain) {
+            window.location.href = 'http://' + sub + '.internetcheck.xyz/' + p;
+        }
+        else if(devdomain) {
+            window.location.href = 'http://' + sub + '-' + rootdomain + '/' + p;
+        }
+        else {
+            window.location.href = 'http://' + sub + '.' + rootdomain + '/' + p;
+        }
+    },
+    test: async function() {
         InternetCheck.randomstr = InternetCheck.genrand();
         $("#btnRecheck").prop('disabled', true);
         // Reset results
@@ -118,11 +142,11 @@ const InternetCheck = {
         document.title = domain + ' - ' + document.title;
         let t = document.getElementsByTagName('domain');
         for(let i = 0; i < t.length; i++) {
-            t[i].innerHTML=domain;
+            t[i].innerHTML=rootdomain;
         }
     },
     test_esni: function() {
-        let t = "https://" + InternetCheck.randomstr + "-" + domain.replaceAll('.', '_') + ".encryptedsni.com/cdn-cgi/trace"
+        let t = "https://" + InternetCheck.randomstr + "-" + rootdomain.replaceAll('.', '_') + ".encryptedsni.com/cdn-cgi/trace"
         $.get(t).done((res) => {
             // Parse data to dict for easy access
             let data = {}
@@ -137,9 +161,9 @@ const InternetCheck = {
     },
     test_secure_dns: function() {
         let targets = {
-            iscf: "https://"  + InternetCheck.randomstr + "-" + domain.replaceAll('.', '_') + ".is-cf.help.every1dns.net/resolvertest",
-            isdoh: "https://" + InternetCheck.randomstr + "-" + domain.replaceAll('.', '_') + ".is-doh.help.every1dns.net/resolvertest",
-            isdot: "https://" + InternetCheck.randomstr + "-" + domain.replaceAll('.', '_') + ".is-dot.help.every1dns.net/resolvertest",
+            iscf: "https://"  + InternetCheck.randomstr + "-" + rootdomain.replaceAll('.', '_') + ".is-cf.help.every1dns.net/resolvertest",
+            isdoh: "https://" + InternetCheck.randomstr + "-" + rootdomain.replaceAll('.', '_') + ".is-doh.help.every1dns.net/resolvertest",
+            isdot: "https://" + InternetCheck.randomstr + "-" + rootdomain.replaceAll('.', '_') + ".is-dot.help.every1dns.net/resolvertest",
         };
         for(const [k, t] of Object.entries(targets)) {
             $.get(t)
@@ -184,7 +208,7 @@ const InternetCheck = {
             $("#status_secure_sni").find('span[data-status=fail]').removeClass('d-none').text(InternetCheck.esni.sni);
     },
     test_dnssec: function() {
-        let t = "https://" + InternetCheck.randomstr + "-" + domain.replaceAll('.', '_') + ".brokendnssec.net/check"
+        let t = "https://" + InternetCheck.randomstr + "-" + rootdomain.replaceAll('.', '_') + ".brokendnssec.net/check"
         $.get(t)
             .done(() => {
                 InternetCheck.dnssec=false;
@@ -217,7 +241,9 @@ const InternetCheck = {
         r.find('div:nth-child(1)').text("Internet");
         r = d.append(r).find('div.row[data-target="Internet"]')
         const startTime = Date.now();
-        $.get("https://" + InternetCheck.randomstr + "." + domain + "/ping")
+        // Temporarily hard-coded until rolled out everywhere
+        $.get("https://" + InternetCheck.randomstr + ".networkstest.xyz/ping")
+        // $.get("https://" + InternetCheck.randomstr + "." + domain + "/ping")
             .done(() => {
                 const stopTime = Date.now()
                 $("#app_tests").find('div.row[data-target="Internet"]>div:nth-child(2)').children('span[data-status]').addClass('d-none')
