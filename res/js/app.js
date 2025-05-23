@@ -106,9 +106,6 @@ const InternetCheck = {
         if(!domain) {
             window.location.href = 'http://' + sub + '.internetcheck.xyz/' + p;
         }
-        else if(devdomain) {
-            window.location.href = 'http://' + sub + '-' + rootdomain + '/' + p;
-        }
         else {
             window.location.href = 'http://' + sub + '.' + rootdomain + '/' + p;
         }
