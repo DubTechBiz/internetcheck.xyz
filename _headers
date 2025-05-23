@@ -1,8 +1,13 @@
-/https://:subdomain.:domani/
+/https://:subdomain.:domain/
  Access-Control-Allow-Origin: https://:domain
  Access-Control-Allow-Methods: GET
 
 /ping
+ Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+ Pragma: no-cache
+ Expires: 0
+ X-Robots-Tag: noindex
+/ping.txt
  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
  Pragma: no-cache
  Expires: 0
