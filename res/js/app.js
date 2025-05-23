@@ -104,6 +104,7 @@ const InternetCheck = {
         //     return InternetCheck.redirect('online');
 
         // Upgrade to HTTPS
+        // Automatic upgrade disabled to prevent page flicker
         // if(!is_https)
         //     return window.location.href = window.location.href.replace('http://', 'https://');
 
@@ -115,7 +116,8 @@ const InternetCheck = {
         InternetCheck.test();
     },
     genrand: function() {
-        return typeof crypto != 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2)
+        // crypto.randomUUID() is only available when served over HTTPS. I don't know why, I don't make the rules.
+        return is_https && typeof crypto != 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2)
     },
     redirect: function(p) {
         p = p || '';
