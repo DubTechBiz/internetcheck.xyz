@@ -3,7 +3,7 @@
   "account_id": "b53a94dbb915dc3f10629470c2cf2fed",
 
   // Required for Wrangler v3+: locks in behavior versioning
-  "compatibility_date": "2025-05-02",
+  "compatibility_date": "2025-05-22",
 
   // Use your own domain — not *.workers.dev
   "workers_dev": false,

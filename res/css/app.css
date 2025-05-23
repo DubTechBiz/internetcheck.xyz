@@ -1,40 +1,10 @@
 /*
- * CSS from Mark Webster
- * https://gist.github.com/markcwebster/9bdf30655cdd5279bad13993ac87c85d
- */
-body {
-     font-family: Montserrat, helvetica, arial, sans-serif; 
-     font-size: 16px;
-     color: #444444;
-     margin: 0;
-}
-h2 {
-    font-weight: 700;
-    font-size: 1.6em;
-    margin-top: 30px;
-}
-p {
-    line-height: 1.6em;
-}
-.container {
-    max-width: 650px;
-    margin: 20px auto 20px auto;
-    padding-left: 15px;
-    padding-right: 15px
-}
-.header {
-    /*background-color: #FCE8B2;*/
-    /*color: ;*/
-    padding: 10px 0 10px 0;
-    font-size: 2.2em;
-}
-
-/*
  * Comment here for crediting source.
  * Coloring scheme acquired from MSFT Excel.
  * They match well, and keep things simple.
  * May likely get replaced down the road with open-source content.
  */
+/*
 .xlsx-good {
     background-color: #C6EECE;
     color: #006000;
@@ -47,3 +17,4 @@ p {
     background-color: #FEC6CE;
     color: #9C0006;
 }
+*/

@@ -1,10 +1,10 @@
-const CACHE_NAME = 'internetcheck-20250502-1555';
+const CACHE_NAME = 'internetcheck-20250522-1830';
 const PRECACHE_URLS = [
   '/', '/index', '/index.html', '/offline', '/offline.html',
   '/res/icons/iconfinder_Web_171330_128.png',
   '/res/icons/iconfinder_Web_171330_150.png',
   '/res/css/bootstrap.min.css',
-  '/res/js/jquery-3.5.1.min.js',
+  '/res/js/jquery-3.7.1.min.js',
   '/res/js/bootstrap.bundle.min.js',
   '/res/js/app.js'
 ];
