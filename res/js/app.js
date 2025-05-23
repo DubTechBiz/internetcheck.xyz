@@ -48,6 +48,9 @@ const InternetCheck = {
     esni: {},
 
     init: function() {
+        // Run this first to show near immediately
+        InternetCheck.updatestatus();
+        
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
         $(document).on("click", "#btnRecheck", () => {InternetCheck.redirect();});
@@ -103,7 +106,6 @@ const InternetCheck = {
         // Update HTML <domain> tags to show the root domain we're on
         InternetCheck.replace_domain();
 
-        InternetCheck.updatestatus();
         // This is a potential development path, but conflicts with the core function since they only run on HTTPS pages.
         // InternetCheck.serviceWorker.init();
         InternetCheck.test();
