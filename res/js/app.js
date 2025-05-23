@@ -104,9 +104,11 @@ const InternetCheck = {
         let sub = InternetCheck.genrand();
         // Only allow this to redirect to approved domains. Otherwise, default to internetcheck.xyz
         if(!domain) {
+            console.log('Redirecting to: http://' + sub + '.internetcheck.xyz/' + p);
             window.location.href = 'http://' + sub + '.internetcheck.xyz/' + p;
         }
         else {
+            console.log('Redirecting to: http://' + sub + '.' + rootdomain + '/' + p);
             window.location.href = 'http://' + sub + '.' + rootdomain + '/' + p;
         }
     },
