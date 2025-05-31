@@ -173,7 +173,7 @@ const InternetCheck = {
     },
     // use this to replace the title and <domain> tags with the current domain
     replace_domain: function() {
-        document.title = domain + ' - ' + document.title;
+        document.title = rootdomain + ' - ' + document.title;
         let t = document.getElementsByTagName('domain');
         for(let i = 0; i < t.length; i++) {
             t[i].innerHTML=rootdomain;
