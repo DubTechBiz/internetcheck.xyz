@@ -52,7 +52,7 @@
                         <dl class="row">
                             <dt class="col-6">System Time:</dt>
                             <dd class="col-6" id="status_time">
-                                <span data-m-format="YYYY-MM-DD HH:mm:ss"></span>
+                                <span data-m-format="YYYY-MM-DD HH:mm:ss" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Ensure this is correct to avoid time-based HTTPS errors."></span>
                             </dd>
                             
                             <dt class="col-6">Secure (HTTPS):</dt>
@@ -134,7 +134,7 @@
                     </div>
                     <div class="col-lg-4">
                         <h2 class="text-center">How?</h2>
-                        <p><domain>internetcheck.xyz</domain> will <u data-bs-toggle="tooltip" data-bs-position="auto" data-bs-title="Although not forced, HTTPS is still supported.">never force</u> HTTPS. No encryption, no strong authentication, no <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security" target="_blank">HSTS</a>, no HTTP/2 or HTTP/3, just plain old unencrypted HTTP and forever stuck in the dark ages of internet security.</p>
+                        <p><domain>internetcheck.xyz</domain> will <u data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Although not forced, HTTPS is still supported.">never force</u> HTTPS. No encryption, no strong authentication, no <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security" target="_blank">HSTS</a>, no HTTP/2 or HTTP/3, just plain old unencrypted HTTP and forever stuck in the dark ages of internet security.</p>
                         <p>This basically means the guest network will be allowed to hijack your request to this site, and instead display their captive portal for you to sign into.</p>
                         <p>Once you're signed into the network, feel free to use this tool again to verify internet access. After verifying, NEVER accept HTTPS warning/errors. Check your system date/time, then run this test again. If the HTTPS test passes, you're good on your end.</p>
                     </div>
@@ -149,7 +149,7 @@
                         <h2>Similar domains:</h2>
                         <p>Below are a list of our domains that also point to this site.
                         Some may be easier to remember than others. Feel free to note any down,
-                        or just add them to your bookmarks!*</p>
+                        or just add them to your bookmarks!</p>
                         <ul id="approvedDomains"></ul>
                     </div>
                 </div>

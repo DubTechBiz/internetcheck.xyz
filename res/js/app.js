@@ -53,7 +53,7 @@ const InternetCheck = {
         // Run this first to show near immediately
         InternetCheck.updatestatus();
         // Trigger time
-        InternetCheck.clock = setInterval(InternetCheck.ticktock, 250);
+        InternetCheck.clock = setInterval(InternetCheck.ticktock, 1000);
         
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
