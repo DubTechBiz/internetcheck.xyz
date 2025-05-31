@@ -47,9 +47,13 @@ const InternetCheck = {
 
     esni: {},
 
+    clock: null,
+
     init: function() {
         // Run this first to show near immediately
         InternetCheck.updatestatus();
+        // Trigger time
+        InternetCheck.clock = setInterval(InternetCheck.ticktock, 250);
         
         // Hooks
         // $(document).on("click", "#btnRecheck", () => {window.location.href='http://'+domain;});
@@ -114,6 +118,13 @@ const InternetCheck = {
         // This is a potential development path, but conflicts with the core function since they only run on HTTPS pages.
         // InternetCheck.serviceWorker.init();
         InternetCheck.test();
+    },
+    ticktock: function() {
+        $("[data-m-format]").each((i, e) => {
+            e = $(e);
+            const f = e.attr("data-m-format");
+            e.html(moment().format(f))
+        });
     },
     genrand: function() {
         // crypto.randomUUID() is only available when served over HTTPS. I don't know why, I don't make the rules.

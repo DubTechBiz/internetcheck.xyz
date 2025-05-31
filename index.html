@@ -50,6 +50,11 @@
                     <div class="col-lg-6">
                         <h3 class="text-center">System Tests</h3>
                         <dl class="row">
+                            <dt class="col-6">System Time:</dt>
+                            <dd class="col-6" id="status_time">
+                                <span data-m-format="YYYY-MM-DD HH:mm:ss"></span>
+                            </dd>
+                            
                             <dt class="col-6">Secure (HTTPS):</dt>
                             <dd class="col-6" id="status_https">
                                 <span data-status="checking" class="badge bg-info-subtle border border-info-subtle text-info-emphasis">Checking...</span>
@@ -57,7 +62,7 @@
                                 <span data-status="dev" class="badge bg-info-subtle border border-info-subtle text-info-emphasis d-none" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="You are accessing this page over a direct file path.">Dev</span>
                                 <span data-status="no" class="badge bg-danger-subtle border border-danger-subtle text-danger-emphasis d-none" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="auto" data-bs-title="Click to upgrade to HTTPS. <br> This is off by default to allow MITM for captive portal redirect.">No</span>
                             </dd>
-                            
+
                             <dt class="col-6">Domain:</dt>
                             <dd class="col-6"><domain>N/A</domain></dd>
 
@@ -122,25 +127,27 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <h2 class="text-center">What?</h2>
-                        <p>This website is for when you try to get online on a guest WiFi network, and nothing happens. You may even get a security alert when attempting to visit websites while connected to it. Type "http://<domain>internetcheck.xyz</domain>" into your browser's URL bar, and you'll be able to get the splash page up to log on.</p>
+                        <p>This website was created to help you get online. If you ever connect to a Guest Wi-Fi network, but the internet does not work properly, you may need to sign into the network. You may even get a security alert when attempting to visit websites while connected to the network. This is normal, but requires action. To fix this, simply type "http://<domain>internetcheck.xyz</domain>" into your browser's URL bar, and you'll be able to get the captive portal up to log on.</p>
 
                         <h5 class="text-center">Pro tip:</h5>
                         <p>This works on <u>all</u> devices with an internet browser. That includes laptops, phones, tablets, gaming consoles, and even Smart TVs! Although not all Smart TVs have a built in web browser, in which case, this method will not work for them.</p>
                     </div>
                     <div class="col-lg-4">
                         <h2 class="text-center">How?</h2>
-                        <p><domain>internetcheck.xyz</domain> will never force SSL (also known as TLS). No encryption, no strong authentication, no <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security" target="_blank">HSTS</a>, no HTTP/2 or HTTP/3, just plain old unencrypted HTTP and forever stuck in the dark ages of internet security.<br><br>This basically means the guest WiFi router will be allowed to hijack your request to this site, and instead display their splash page.</p>
+                        <p><domain>internetcheck.xyz</domain> will <u data-bs-toggle="tooltip" data-bs-position="auto" data-bs-title="Although not forced, HTTPS is still supported.">never force</u> HTTPS. No encryption, no strong authentication, no <a href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security" target="_blank">HSTS</a>, no HTTP/2 or HTTP/3, just plain old unencrypted HTTP and forever stuck in the dark ages of internet security.</p>
+                        <p>This basically means the guest network will be allowed to hijack your request to this site, and instead display their captive portal for you to sign into.</p>
+                        <p>Once you're signed into the network, feel free to use this tool again to verify internet access. After verifying, NEVER accept HTTPS warning/errors. Check your system date/time, then run this test again. If the HTTPS test passes, you're good on your end.</p>
                     </div>
                     <div class="col-lg-4">
                         <h2 class="text-center">Why?</h2>
-                        <p>Normally, not using SSL is a bad idea. You should always use SSL and secure encryption when possible. In fact, it's such a bad idea, that most websites are now using https by default. Google will actually penalize sites that don't use it, and prevent them from showing at the top of their search results.<br><br>All of that is great, but it also means that if you're relying on poorly-behaved WiFi networks, it can be hard to get online. Secure browsers and websites using https make it impossible for those WiFi networks to send you to a login or payment page. Basically, those networks can't hijack your connection (just like attackers can't).</p>
+                        <p>Normally, <a href="https://www.cloudflare.com/learning/ssl/why-use-https/" target="_blank">not using SSL is a bad idea</a>. You should always use SSL and secure encryption when possible. In fact, it's such a bad idea, that most websites are now using HTTPS by default. <a href="https://developers.google.com/search/blog/2014/08/https-as-ranking-signal" target="_blank">Google will actually penalize sites that don't use HTTPS</a>, and prevent them from showing at the top of their search results.<br><br>All of that is great, but it also means that if you're relying on poorly-behaved Wi-Fi networks, it can be hard to get online. Secure browsers and websites using HTTPS make it near impossible for those Wi-Fi networks to send you to a login or payment page. Basically, those networks can't hijack your connection (just like attackers can't).</p>
                     </div>
                 </div>
                 <div class="row py-2"></div>
                 <div class="row">
                     <div class="col-12">
                         <h2>Similar domains:</h2>
-                        <p>Below are a list of domains that also point to this site.
+                        <p>Below are a list of our domains that also point to this site.
                         Some may be easier to remember than others. Feel free to note any down,
                         or just add them to your bookmarks!*</p>
                         <ul id="approvedDomains"></ul>
@@ -150,14 +157,26 @@
             </div>
         </main>
         <footer class="footer mt-auto py-2 bg-body-tertiary">
-            <div class="container">
-                <span class="text-body-secondary">
-                    Powered by Cloudflare: <a href="https://workers.cloudflare.com/" target="_blank">Workers</a> &amp; <a href="https://www.cloudflare.com/ssl/encrypted-sni/" target="_blank">ESNI Tester</a><br>Inspired by NeverSSL.com
-                </span>
+            <div class="container d-flex flex-wrap justify-content-between align-items-center">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="text-body-secondary">
+                        Powered by Cloudflare: <a href="https://workers.cloudflare.com/" target="_blank">Workers</a> &amp; <a href="https://www.cloudflare.com/ssl/encrypted-sni/" target="_blank">ESNI Tester</a><br>Inspired by NeverSSL.com
+                    </span>
+                </div>
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="ms-3">
+                        <a aria-label="Github" class="text-body-secondary" href="https://github.com/DubTechBiz/internetcheck.xyz" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </footer>
-        <script type="application/javascript" src="./res/js/jquery-3.7.1.min.js"></script>
-        <script type="application/javascript" src="./res/js/bootstrap.bundle.min.js"></script>
-        <script type="application/javascript" src="./res/js/app.js"></script>
+        <script defer type="application/javascript" src="./res/js/jquery-3.7.1.min.js"></script>
+        <script defer type="application/javascript" src="./res/js/bootstrap.bundle.min.js"></script>
+        <script defer type="application/javascript" src="./res/js/moment.js"></script>
+        <script defer type="application/javascript" src="./res/js/app.js"></script>
     </body>
 </html>
