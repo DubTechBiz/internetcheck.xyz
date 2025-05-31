@@ -1,5 +1,5 @@
-http://internetcheck.xyz
-http://internettest.xyz
-http://networkcheck.xyz
-http://networktest.xyz
-http://http.rocks
+https://internetcheck.xyz
+https://internettest.xyz
+https://networkcheck.xyz
+https://networktest.xyz
+https://http.rocks
