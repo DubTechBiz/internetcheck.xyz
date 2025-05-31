@@ -3,7 +3,7 @@
   "account_id": "b53a94dbb915dc3f10629470c2cf2fed",
 
   // Required for Wrangler v3+: locks in behavior versioning
-  "compatibility_date": "2025-05-22",
+  "compatibility_date": "2025-05-31",
 
   // Use your own domain — not *.workers.dev
   "workers_dev": false,
@@ -12,7 +12,7 @@
     "prod": {
       // Serve static files from the root directory
       "assets": {
-        "directory": "."
+        "directory": "www"
       },
 
       // Apply this Worker to multiple HTTP domains and subdomains
@@ -27,7 +27,7 @@
     "dev": {
       // Serve static files from the root directory
       "assets": {
-        "directory": "."
+        "directory": "www"
       },
 
       // Apply this Worker to multiple HTTP domains and subdomains
