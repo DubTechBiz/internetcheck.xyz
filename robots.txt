@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://internetcheck.xyz/sitemap.txt
+Sitemap: https://internetcheck.xyz/sitemap.txt
