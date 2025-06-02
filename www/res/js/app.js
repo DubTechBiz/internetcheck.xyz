@@ -1,7 +1,13 @@
 "use strict";
-Sentry.onLoad(function() {
-    Sentry.init();
-});
+try {
+    Sentry.onLoad(function() {
+        Sentry.init();
+    });
+}
+catch (e) {
+    console.error("Sentry failed to load, unable to capture page errors for reporting.");
+    console.error(e);
+}
 
 // Config
 const prefix = 'bcdfhklmnrstvwxz';
