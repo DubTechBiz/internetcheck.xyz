@@ -1,4 +1,8 @@
 "use strict";
+Sentry.onLoad(function() {
+    Sentry.init();
+});
+
 // Config
 const prefix = 'bcdfhklmnrstvwxz';
 const approved_domains = ['internetcheck.xyz', 'internettest.xyz', 'networkcheck.xyz', 'networktest.xyz', 'http.rocks'];
