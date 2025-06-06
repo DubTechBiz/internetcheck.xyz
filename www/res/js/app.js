@@ -340,12 +340,8 @@ const InternetCheck = {
             const img = new Image();
             const status = {name: s.name, url: s.url, accessible: false, time: null};
             let startTime, endTime;
-            // Set a timeout in case the image never loads (e.g., blocked)
-            const timeout = setTimeout(() => {
-                // Cancel the image load and resolve as inaccessible
-                img.src = "";
-                resolve(status);
-            }, 5000); // 5 seconds timeout
+            // Add some anti-tracking
+            img.referrerPolicy = 'same-origin';
             img.onload = function() {
                 endTime = Date.now();
                 clearTimeout(timeout);
@@ -362,6 +358,12 @@ const InternetCheck = {
             startTime = Date.now();
             // Append a cache-busting query parameter to prevent caching
             img.src = s.testpoint + "?r" + Date.now();
+            // Set a timeout in case the image never loads (e.g., blocked)
+            const timeout = setTimeout(() => {
+                // Cancel the image load and resolve as inaccessible
+                img.src = "";
+                resolve(status);
+            }, 5000); // 5 seconds timeout
         });
     },
     serviceWorker: {
@@ -400,3 +402,6 @@ const InternetCheck = {
 (function() {
     InternetCheck.init();
 }())
+
+// Temporary, trigger Sentry.io
+myUndefinedFunction();
