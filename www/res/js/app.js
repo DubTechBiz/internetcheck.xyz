@@ -402,6 +402,3 @@ const InternetCheck = {
 (function() {
     InternetCheck.init();
 }())
-
-// Temporary, trigger Sentry.io
-myUndefinedFunction();
