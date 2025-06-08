@@ -63,6 +63,7 @@ const InternetCheck = {
         // Run this first to show near immediately
         InternetCheck.updatestatus();
         // Trigger time
+        InternetCheck.ticktock();
         InternetCheck.clock = setInterval(InternetCheck.ticktock, 1000);
         
         // Hooks
