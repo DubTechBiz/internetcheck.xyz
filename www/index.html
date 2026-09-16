@@ -50,10 +50,15 @@
                     <div class="col-lg-6">
                         <h3 class="text-center">System Tests</h3>
                         <dl class="row">
-                            <dt class="col-6">System Time:</dt>
-                            <dd class="col-6" id="status_time">
-                                <span data-m-format="YYYY-MM-DD HH:mm:ss" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Ensure this is correct to avoid time-based HTTPS errors."></span>
+                            <dt class="col-6">Internet Time:</dt>
+                            <dd class="col-6" id="status_internet_time">
+                                <span class="badge bg-info-subtle border border-info-subtle text-info-emphasis" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Time is acquired via Cloudflare.">Syncing...</span>
                             </dd>
+                            <dt class="col-6">System Time:</dt>
+                            <dd class="col-6" id="status_system_time">
+                                <span class="badge bg-info-subtle border border-info-subtle text-info-emphasis" data-m-format="YYYY-MM-DD HH:mm:ss" data-bs-toggle="tooltip" data-bs-placement="auto" data-bs-title="Ensure this is correct to avoid time-based HTTPS errors."></span>
+                            </dd>
+                            <div id="status_time_warning" class="col-12 alert alert-danger d-none" role="alert"></div>
                             
                             <dt class="col-6">Secure (HTTPS):</dt>
                             <dd class="col-6" id="status_https">

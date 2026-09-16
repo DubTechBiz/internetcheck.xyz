@@ -3,18 +3,19 @@
   "account_id": "b53a94dbb915dc3f10629470c2cf2fed",
 
   // Required for Wrangler v3+: locks in behavior versioning
-  "compatibility_date": "2025-05-31",
+  "compatibility_date": "2026-09-16",
 
   // Use your own domain — not *.workers.dev
   "workers_dev": false,
 
+  // Serve static files from the root directory
+  "assets": {
+    "directory": "www",
+    "not_found_handling": "404-page"
+  },
+
   "env": {
     "prod": {
-      // Serve static files from the root directory
-      "assets": {
-        "directory": "www"
-      },
-
       // Apply this Worker to multiple HTTP domains and subdomains
       "routes": [
         {"pattern": "*internetcheck.xyz/*", "zone_id": "8595afd68f782f47576db106ed4c1e13"},
@@ -25,11 +26,6 @@
       ]
     },
     "dev": {
-      // Serve static files from the root directory
-      "assets": {
-        "directory": "www"
-      },
-
       // Apply this Worker to multiple HTTP domains and subdomains
       "routes": [
         {"pattern": "*networkstest.xyz/*", "zone_id": "1bf9caa824b74a55e36da9ca46ab8eb9"}
